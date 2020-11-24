@@ -567,7 +567,7 @@ class CameraActivity : AppCompatActivity(),
 
 
         loadRecycle(proyectPath,scrollPosition)
-
+        //soy un comentario
     }
 
     fun changeImageFormat(file: File,imageFormat:String)= runBlocking(Dispatchers.IO){
