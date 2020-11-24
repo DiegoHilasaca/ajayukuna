@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_camera"
+        tools:context=".CameraActivity">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/preview_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <ImageButton
+            android:id="@+id/btn_options"
+            android:layout_width="@dimen/button_with_height"
+            android:layout_height="@dimen/button_with_height"
+            android:src="@animator/btn_options"
+            android:backgroundTint="@color/transparent"
+            android:layout_marginEnd="@dimen/button_marginEnd"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/btn_pen"
+            android:layout_width="@dimen/button_with_height"
+            android:layout_height="@dimen/button_with_height"
+            android:src="@animator/btn_pen"
+            android:backgroundTint="@color/transparent"
+            android:layout_marginEnd="@dimen/button_marginEnd"
+            android:layout_marginTop="@dimen/margin_top3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/take_picture"
+            android:layout_width="@dimen/button_with_height"
+            android:layout_height="@dimen/button_with_height"
+            android:layout_marginTop="@dimen/margin_top4"
+            android:src="@drawable/ic_camera_red"
+            android:background="@color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/btn_animPrev"
+            android:layout_width="@dimen/button_with_height"
+            android:layout_height="@dimen/button_with_height"
+            android:layout_marginEnd="@dimen/button_marginEnd"
+            android:layout_marginTop="@dimen/margin_top5"
+            android:src="@animator/btn_play"
+            android:backgroundTint="@color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:translationX="@dimen/button_translateX"
+            android:layout_width="@dimen/button_with_height"
+            android:layout_height="@dimen/button_with_height"
+            android:layout_marginEnd="@dimen/button_marginEnd"
+            android:layout_marginTop="@dimen/margin_top5"
+            android:visibility="invisible"
+            android:src="@drawable/ic_btn_trash"
+            android:backgroundTint="@color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/animPrev"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/selectItem"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_pequeño"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <Button
+            android:id="@+id/deleteSelectItem"
+            android:layout_width="@dimen/button_pequeño"
+            android:layout_height="@dimen/button_pequeño"
+            android:background="@color/colorVerdeAjayu"
+            android:textStyle="italic"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            android:text="@string/x"
+            app:layout_constraintEnd_toEndOf="@+id/selectItem"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/regresar"
+            android:layout_width="@dimen/button_largo"
+            android:layout_height="@dimen/button_pequeño"
+            android:backgroundTint="@color/transparent"
+            android:layout_marginStart="@dimen/margin_startReturn"
+            android:src="@animator/btn_return"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/nombre_proyecto"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_pequeño"
+            android:textStyle="italic"
+            android:layout_marginStart="@dimen/margin_startNombre"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_photos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

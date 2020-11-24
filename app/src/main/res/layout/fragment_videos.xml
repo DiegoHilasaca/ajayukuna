@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.videos.VideoFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo_verde"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <ImageButton
+        android:id="@+id/delete_video"
+        android:layout_width="@dimen/proyecto_button"
+        android:layout_height="@dimen/proyecto_button"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_btn_trash"
+        android:backgroundTint="@color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    <TextView
+        android:id="@+id/select_video"
+        android:textColor="@color/white"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_pequeño"
+        android:textStyle="italic"
+        android:layout_marginStart="@dimen/margin_itemSelect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <Button
+        android:id="@+id/delete_select_video"
+        android:layout_width="@dimen/button_pequeño"
+        android:layout_height="@dimen/button_pequeño"
+        android:background="@color/colorRojoAjayu"
+        android:textStyle="italic"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        android:text="@string/x"
+        android:layout_marginStart="@dimen/margin_startX"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

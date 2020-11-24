@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_animaciones"
+            android:icon="@drawable/ic_btn_film"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/ic_btn_apoyanos"
+            android:iconTint="@color/dark"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_donativo"
+            android:icon="@drawable/ic_btn_donate"
+            android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/nav_videos"
+            android:icon="@drawable/ic_video"
+            android:title="@string/mis_animaciones" />
+    </group>
+</menu>

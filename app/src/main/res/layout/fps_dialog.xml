@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fps_dialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardPreventCornerOverlap="false"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="OPCIONES"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/realTransparent"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Fotos por segundo:"
+                android:gravity="center"
+                android:textColor="@color/white"
+                />
+            <Spinner
+                android:id="@+id/fps_spinner"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/realTransparent"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Formato de imagen:"
+                android:gravity="center"
+                android:textColor="@color/white"
+                />
+            <Spinner
+                android:id="@+id/imageType_spinner"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_btn_export_white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@color/realTransparent"
+                android:text="RENDER"/>
+            <ImageButton
+                android:id="@+id/render"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_btn_export_white"
+                android:background="@color/realTransparent"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

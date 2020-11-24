@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_animaciones">
+
+    <fragment
+        android:id="@+id/nav_animaciones"
+        android:name="com.ajayu.newproyect.ui.animaciones.AnimacionesFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_animaciones">
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_info"
+        android:name="com.ajayu.newproyect.ui.nosotros.InformacionFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_informacion" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_donativo"
+        android:name="com.ajayu.newproyect.ui.apoyanos.DonacionesFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_apoyo" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/nav_videos"
+        android:name="com.ajayu.newproyect.ui.videos.VideoFragment"
+        android:label="Mis Animaciones"
+        tools:layout="@layout/fragment_videos">
+
+        <argument android:name="videoPath"
+            app:argType="string"
+            android:defaultValue="None"/>
+        <action
+            android:id="@+id/action_nav_videos_to_exoActivity2"
+            app:destination="@id/exoActivity2"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/nav_videos"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+    <activity
+        android:id="@+id/exoActivity2"
+        android:name="com.ajayu.newproyect.ExoActivity"
+        android:label="activity_exo"
+        tools:layout="@layout/activity_exo"
+        >
+    </activity>
+
+</navigation>
