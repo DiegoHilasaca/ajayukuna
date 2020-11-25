@@ -652,6 +652,7 @@ class CameraActivity : AppCompatActivity(),
                         Log.e("pafilephotoAth",filephotoA.absolutePath)
                 }
                 }
+                //soy un comentario
             }
             fileA.renameTo(fileB)
             proyectPath=file.parent+"/"+newProyectName
