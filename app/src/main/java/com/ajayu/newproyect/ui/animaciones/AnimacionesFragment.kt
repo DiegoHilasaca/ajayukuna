@@ -30,8 +30,9 @@ import java.io.File
 import java.io.File.*
 
 private const val REQUEST_CODE_PERMISSIONS = 10
-
 private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,android.Manifest.permission.READ_EXTERNAL_STORAGE)
+const val APP_NAME="Ajayukuna"
+const val PROYECTS= "Animaciones"
 
 @Suppress("DEPRECATION")
 class AnimacionesFragment : Fragment(),
@@ -40,15 +41,13 @@ class AnimacionesFragment : Fragment(),
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    var animationsList = ArrayList<AnimationModel>()
+    private var animationsList = ArrayList<AnimationModel>()
 
     private var animationsPath=""
-    private var APP_NAME="Ajayukuna"
-    private val PROYECTS= "Animaciones"
 
-    val animateView= AnimateView()
-    val crud = CrudPhoto()
-    val crudAnimations = CrudAnimations()
+
+    private val animateView = AnimateView()
+    private val crudAnimations = CrudAnimations()
 
     private var deletePath =""
     private var deletePosition=0
@@ -105,7 +104,7 @@ class AnimacionesFragment : Fragment(),
     }
 
 
-    fun loadRecycleViewProyect(){
+    private fun loadRecycleViewProyect(){
         animationsList = ArrayList()
 
         crudAnimations.addAnimation(animationsPath,animationsList)
@@ -162,7 +161,7 @@ class AnimacionesFragment : Fragment(),
 
 
 
-    fun showDialog(){
+    private fun showDialog(){
         val builder = context?.let { AlertDialog.Builder(it) }
         val inflater = layoutInflater
         val view : View
@@ -179,7 +178,7 @@ class AnimacionesFragment : Fragment(),
         val arrayAdapter= context?.let { ArrayAdapter(it,R.layout.spinner_items,arrayFps) }
         spinnerFps?.adapter=arrayAdapter
 
-        aceptProyect1?.setOnClickListener(){
+        aceptProyect1?.setOnClickListener{
             val nameProyect1 = dialog.findViewById<EditText>(R.id.name_proyect)
             val nombreProyect = nameProyect1?.text.toString()
             val selectSpin= spinnerFps?.selectedItem.toString()
@@ -195,7 +194,7 @@ class AnimacionesFragment : Fragment(),
 
     }
 
-    fun showDialogDelete(){
+    private fun showDialogDelete(){
         val builder = context?.let { AlertDialog.Builder(it) }
         val inflater = layoutInflater
         val view : View

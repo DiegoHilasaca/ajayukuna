@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.*
 import android.graphics.drawable.Animatable
 import android.graphics.drawable.AnimationDrawable
@@ -23,10 +22,8 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -39,7 +36,6 @@ import com.ajayu.newproyect.otros.DrawLineCanvas
 import com.ajayu.newproyect.otros.Export
 import com.google.common.util.concurrent.ListenableFuture
 import kotlinx.android.synthetic.main.activity_camera.*
-import kotlinx.android.synthetic.main.photo_item.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -50,14 +46,10 @@ import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
-
-private const val REQUEST_CODE_PERMISSIONS = 10
-
-private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,android.Manifest.permission.READ_EXTERNAL_STORAGE)
-
 const val APP_NAME = "Ajayukuna"
 const val VIDEO_PATH = "Videos"
 
+@Suppress("DEPRECATION")
 class CameraActivity : AppCompatActivity(),
     PhotoViewAdapter.OnPhotoClickListener {
     //Recycleview
@@ -72,12 +64,12 @@ class CameraActivity : AppCompatActivity(),
     private lateinit var previewView : PreviewView
 
     val animateView= AnimateView()
-    val crudPhoto = CrudPhoto()
+    private val crudPhoto = CrudPhoto()
 
     private var scrollPosition=1
     private var defaultPhotoExtension = ".jpg"
     private var photoExtension = ".jpg"
-    var btnChange="AnimPrev"
+    private var btnChange="AnimPrev"
     //paths
     private var videoPath = ""
     private var proyectName="" //nombre del proyecto
@@ -128,8 +120,8 @@ class CameraActivity : AppCompatActivity(),
         }
 
     }
-    fun showPrevAnimation(){
-        var bitdrawable =  AnimationDrawable()
+    private fun showPrevAnimation(){
+        val bitdrawable =  AnimationDrawable()
         var fpsAnimation=0
         when(fps){
             10->{fpsAnimation=100}
@@ -206,7 +198,7 @@ class CameraActivity : AppCompatActivity(),
 
     private var selectedPath: String=""  // ruta escogida
     //private var photoSize=0
-    var itemViewSelected = 0
+    private var itemViewSelected = 0
     override fun onPhotoLongClick(item: PhotoModel, position: Int) {
         btnChange="Delete"
         btn_animPrev.setImageResource(R.drawable.ic_btn_trash)
@@ -229,8 +221,7 @@ class CameraActivity : AppCompatActivity(),
         val aCC = findViewById<ConstraintLayout>(R.id.activity_camera)
         val set = ConstraintSet()
         val imageViewItem = ImageView(this)
-        val estado =listPhoto[position].status
-        when(estado){
+        when(listPhoto[position].status){
 
             false->{
                 imageViewItem.id=position
@@ -260,7 +251,7 @@ class CameraActivity : AppCompatActivity(),
 
     }
 
-    fun traerAlFrente(){
+    private fun traerAlFrente(){
         btn_animPrev.bringToFront()
         delete.bringToFront()
         recyclerView_photos.bringToFront()
@@ -281,7 +272,7 @@ class CameraActivity : AppCompatActivity(),
         while (photoSize>position) {
             val posStatus=listPhoto[position].status
             if (posStatus) {
-                var imageViewDelete = findViewById<ImageView>(position)
+                val imageViewDelete = findViewById<ImageView>(position)
                 Log.e("imageViewDelete", imageViewDelete?.id.toString())
                 aCC.removeView(imageViewDelete)
             }
@@ -572,7 +563,7 @@ class CameraActivity : AppCompatActivity(),
 
     fun changeImageFormat(file: File,imageFormat:String)= runBlocking(Dispatchers.IO){
 
-        var pathList=ArrayList<String>()
+        val pathList=ArrayList<String>()
         File(file.absolutePath).walkTopDown().sortedWith(naturalOrder()).forEach {
             val dir = it.isFile
             when {dir->{
@@ -664,7 +655,7 @@ class CameraActivity : AppCompatActivity(),
             Log.e("fps_changedfps",fps2)
             Log.e("pathParent_changedfps",proyectName)
             nombre_proyecto.text = proyectName.substring(2)
-        }else Toast.makeText(baseContext,"Los fps son los mismos",Toast.LENGTH_SHORT)
+        }else Toast.makeText(baseContext,"Los fps son los mismos",Toast.LENGTH_SHORT).show()
 
     }
 
@@ -771,13 +762,6 @@ class CameraActivity : AppCompatActivity(),
         hideSystemUI()
     }
 
-    private fun showSystemUI() {
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                //or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                )
-    }
-
     private lateinit var imageAnalysis: ImageAnalysis
 
     private val executor = Executors.newSingleThreadExecutor()
@@ -866,7 +850,7 @@ class CameraActivity : AppCompatActivity(),
             }
         })
     }
-    fun detectFormatImage(){
+    private fun detectFormatImage(){
         var jpg = 0
         var webp = 0
         File(proyectPath).walkTopDown().sortedWith(naturalOrder()).forEach {
@@ -1060,7 +1044,7 @@ class CameraActivity : AppCompatActivity(),
         val cameraSelector =
             CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
 
-        cameraProviderFuture.addListener(Runnable {
+        cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
             cameraProvider.bindToLifecycle(this, cameraSelector,preview,imageAnalysis,imageCapture)
         }, ContextCompat.getMainExecutor(this))

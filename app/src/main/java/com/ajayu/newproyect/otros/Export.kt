@@ -13,11 +13,11 @@ import com.arthenica.mobileffmpeg.FFmpeg
 import java.text.NumberFormat
 
 
-class Export(val inputPath: String, val outputPath: String, val fps: String, val context: Context) {
+class Export(private val inputPath: String, private val outputPath: String, private val fps: String, val context: Context) {
 
-    val animateView=AnimateView()
+    private val animateView=AnimateView()
 
-    val TAG = "ffmpeg"
+    private val TAG = "ffmpeg"
 
     fun execute2(){
 
@@ -41,7 +41,6 @@ class Export(val inputPath: String, val outputPath: String, val fps: String, val
                     "Finalizado en : ${format.format((end - start) / 1000)} segundos",
                     Toast.LENGTH_LONG
                 ).show()
-                //Log.e("Tiempo de carga","${format.format((end-start)/1000)}")
                 animateView.run {
                     format.minimumFractionDigits = 0
                     Toast.makeText(
@@ -49,7 +48,7 @@ class Export(val inputPath: String, val outputPath: String, val fps: String, val
                         "Finalizado en : ${format.format((end - start) / 1000)} segundos",
                         Toast.LENGTH_LONG
                     ).show()
-                    Log.e("Tiempo de carga", "${format.format((end - start) / 1000)}")
+                    Log.e("Tiempo de carga", format.format((end - start) / 1000))
                 }
                 Handler().postDelayed({
                     val intent = Intent(context, ExoActivity::class.java)

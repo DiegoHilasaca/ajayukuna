@@ -16,14 +16,14 @@ import com.ajayu.newproyect.model.VideoModel
 
 class VideoViewAdapter(
     val context: Context,
-    var clickListener: OnVideoClickListener, val videosList: List<VideoModel>):
+    private var clickListener: OnVideoClickListener, private val videosList: List<VideoModel>):
         RecyclerView.Adapter<VideoViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.proyect_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.proyect_item,parent,false)
 
         return ViewHolder(view)
     }
@@ -38,8 +38,8 @@ class VideoViewAdapter(
     }
 
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        var title :TextView = itemView.findViewById(R.id.text_view1)
-        var img :ImageView = itemView.findViewById(R.id.image_view1)
+        private var title :TextView = itemView.findViewById(R.id.text_view1)
+        private var img :ImageView = itemView.findViewById(R.id.image_view1)
 
 
 

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ajayu.newproyect.R
 import com.ajayu.newproyect.otros.AnimateView
@@ -17,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_apoyo.*
 class DonacionesFragment : Fragment() {
 
     private lateinit var donacionesViewModel: DonacionesViewModel
-    val animateView =AnimateView()
+    private val animateView =AnimateView()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +28,7 @@ class DonacionesFragment : Fragment() {
                 ViewModelProvider(this).get(DonacionesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_apoyo, container, false)
         val textView: TextView = root.findViewById(R.id.text_slideshow)
-        donacionesViewModel.text.observe(viewLifecycleOwner, Observer {
+        donacionesViewModel.text.observe(viewLifecycleOwner,{
             textView.text = it
         })
         return root

@@ -1,13 +1,10 @@
 package com.ajayu.newproyect
 
-import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.View
-import androidx.navigation.navArgs
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -19,13 +16,14 @@ import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.activity_exo.*
 import kotlinx.android.synthetic.main.custom_controller.*
 import java.io.File
+const val PATH_APP= "Ajayukuna"
 
 class ExoActivity : AppCompatActivity(),Player.EventListener {
 
-    lateinit var videoPath : String
-    lateinit var simpleExoPlayer : SimpleExoPlayer
-    lateinit var uri: Uri
-    private val PATH_APP= "Ajayukuna"
+    private lateinit var videoPath : String
+    private lateinit var simpleExoPlayer : SimpleExoPlayer
+    private lateinit var uri: Uri
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +33,8 @@ class ExoActivity : AppCompatActivity(),Player.EventListener {
         val intent = intent
         videoPath = intent.getStringExtra("videoPath")
         Log.e("videoPath",videoPath)
-        video_tittle.text= PATH_APP+File.separator+videoPath.substringAfterLast("/").substring(2)
+        val videoTitleString= PATH_APP+File.separator+videoPath.substringAfterLast("/").substring(2)
+        video_tittle.text= videoTitleString
 
         simpleExoPlayer = SimpleExoPlayer.Builder(this).build()
         playerView.player=simpleExoPlayer
@@ -59,8 +58,7 @@ class ExoActivity : AppCompatActivity(),Player.EventListener {
 
     override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
         super.onPlayerStateChanged(playWhenReady, playbackState)
-        var stateString=""
-        stateString = when (playbackState) {
+        val stateString = when (playbackState) {
             ExoPlayer.STATE_IDLE-> "ExoPlayer.STATE_IDLE      -"
             ExoPlayer.STATE_BUFFERING->{
                 "ExoPlayer.STATE_BUFFERING -"
@@ -85,7 +83,7 @@ class ExoActivity : AppCompatActivity(),Player.EventListener {
     override fun onResume() {
         super.onResume()
         hideSystemUi()
-        if (Util.SDK_INT < 24 || simpleExoPlayer == null) {
+        if (Util.SDK_INT < 24) {
             initializePlayer()
         }
     }
@@ -110,7 +108,7 @@ class ExoActivity : AppCompatActivity(),Player.EventListener {
     private var currentWindow = 0
     private var playbackPosition = 0
 
-    fun releasePlayer() {
+    private fun releasePlayer() {
         if (simpleExoPlayer != null) {
             playWhenReady = simpleExoPlayer.playWhenReady
             playbackPosition = simpleExoPlayer.currentPosition.toInt()

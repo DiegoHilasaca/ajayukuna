@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_informacion.*
 class InformacionFragment : Fragment() {
 
     private lateinit var informacionViewModel: InformacionViewModel
-    val animateView = AnimateView()
+    private val animateView = AnimateView()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +28,7 @@ class InformacionFragment : Fragment() {
         informacionViewModel = ViewModelProvider(this).get(InformacionViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_informacion, container, false)
         val textView: TextView = root.findViewById(R.id.text_gallery)
-        informacionViewModel.text.observe(viewLifecycleOwner, Observer {
+        informacionViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

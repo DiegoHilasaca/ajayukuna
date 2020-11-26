@@ -7,10 +7,11 @@ import android.util.Log
 import com.ajayu.newproyect.CameraActivity
 import com.ajayu.newproyect.model.AnimationModel
 import java.io.File
+const val APP_NAME="Ajayukuna"
 
 @Suppress("DEPRECATION")
 class CrudAnimations {
-    private val APP_NAME="Ajayukuna"
+
     private val proyectPath= "Animaciones"
     private val videoPath = "Videos"
     private val appPath = Environment.getExternalStorageDirectory().toString()
@@ -68,7 +69,7 @@ class CrudAnimations {
     }
 
 
-    fun addPhotoAnimation(animationsPath:String, listAnimations : ArrayList<AnimationModel>){
+    private fun addPhotoAnimation(animationsPath:String, listAnimations : ArrayList<AnimationModel>){
         var parent2=""
         var count=0
         File(animationsPath).walkTopDown().maxDepth(2).sorted().forEach {
@@ -93,19 +94,14 @@ class CrudAnimations {
         File(animationsPath).walkTopDown().forEach {
             val dir=it.isDirectory
             if (dir){
-                //Log.e("dir",it.toString())
                 var count=0
                 it.walkTopDown().forEach { files->
                     val file=files.isFile
                     when{file->{
-                        //Log.e("count",count.toString())
                         count++
-
-                        //if (count==0)it.delete()
                     }}
                 }
                 if (count==0)it.delete()
-                //Log.e("countfinal",count.toString())
             }
             when {dir->{
                 noProyect++
@@ -117,7 +113,7 @@ class CrudAnimations {
         val intent = Intent(context, CameraActivity::class.java)
         intent.putExtra("path", "$animationsPath/$nombreProyecto")
         Log.e("path",nombreProyecto)
-        intent.putExtra("nombreProyecto",nombreProyecto)//.substring(2)
+        intent.putExtra("nombreProyecto",nombreProyecto)
         context.startActivity(intent)
     }
 

@@ -19,12 +19,12 @@ import com.ajayu.newproyect.ExoActivity
 import com.ajayu.newproyect.model.VideoModel
 import com.ajayu.newproyect.R
 import com.ajayu.newproyect.adapters.VideoViewAdapter
-import com.ajayu.newproyect.crud.CrudPhoto
 import com.ajayu.newproyect.crud.CrudVideo
 import com.ajayu.newproyect.otros.AnimateView
-import kotlinx.android.synthetic.main.fragment_animaciones.*
 import kotlinx.android.synthetic.main.fragment_videos.*
 import java.io.File
+const val APP_NAME="Ajayukuna"
+const val VIDEOS= "Videos"
 
 @Suppress("DEPRECATION")
 class VideoFragment : Fragment(), VideoViewAdapter.OnVideoClickListener {
@@ -32,21 +32,17 @@ class VideoFragment : Fragment(), VideoViewAdapter.OnVideoClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    var videoList = ArrayList<VideoModel>()
+    private var videoList = ArrayList<VideoModel>()
 
     private var videoPath=""
-    private var APP_NAME="Ajayukuna"
-    private var APP_PATH = Environment.getExternalStorageDirectory().absolutePath
-    private val VIDEOS= "Videos"
-    private val ANIMACIONES = "Animaciones"
+    private val APP_PATH = Environment.getExternalStorageDirectory().absolutePath
 
-    val animateView= AnimateView()
-    val crud = CrudPhoto()
-    val crudVideo =  CrudVideo()
+    private val animateView= AnimateView()
+    private val crudVideo =  CrudVideo()
 
     private var deletePath =""
     private var deletePosition=0
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -148,7 +144,7 @@ class VideoFragment : Fragment(), VideoViewAdapter.OnVideoClickListener {
     }
 
 
-    fun showDialogDelete(){
+    private fun showDialogDelete(){
         val builder = context?.let { AlertDialog.Builder(it) }
         val inflater = layoutInflater
         val view : View

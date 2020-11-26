@@ -1,21 +1,13 @@
 package com.ajayu.newproyect.crud
 
-import android.content.ContentValues
-import android.content.Context
-import android.os.Build
-import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
 import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStream
 
 class CrudPhoto {
 
     fun outputPath(proyectName: String, videoPath: String): String {
         Log.e("VideoFile","Generando nombre de video")
-        val nombreVideo=proyectName
-        var file=File(videoPath, "$nombreVideo.mp4")
+        var file=File(videoPath, "$proyectName.mp4")
         val isFileCreated : Boolean = file.createNewFile()
         if (isFileCreated)Log.e("isFileCreated","Se ha creado el file")
         else Log.e("isFileCreated","No se ha creado el file")
@@ -25,7 +17,7 @@ class CrudPhoto {
             when {
                 dir->{
                     if (file.exists()){
-                        val nombreVideoDuplicado="${nombreVideo}_$count.mp4"
+                        val nombreVideoDuplicado="${proyectName}_$count.mp4"
                         file=File(videoPath,nombreVideoDuplicado)
                         count++
                         Log.e("fileVideo",file.toString())
@@ -38,6 +30,5 @@ class CrudPhoto {
         }
         Log.e("outputpath",file.absolutePath)
         return file.absolutePath
-        //coroutineEncoder(file)
     }
 }

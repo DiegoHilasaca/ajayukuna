@@ -8,11 +8,6 @@ import java.io.FileFilter
 
 @Suppress("DEPRECATION")
 class CrudVideo {
-    private val APP_NAME="Ajayukuna"
-    private val proyectPath= "Animaciones"
-    private val VIDEO_PATH = "Videos"
-    private val APP_PATH = Environment.getExternalStorageDirectory().toString()
-
     fun addVideo(videoPath:String, videoList : ArrayList<VideoModel>){
         //agrega carpeta al recycleAdapter
         var num = 0
@@ -36,7 +31,6 @@ class CrudVideo {
 
             }
         }
-        //addPhotoFromVideo(videoPath,videoList)
         Log.e("lista de videos",videoList.toString())
 
     }
@@ -46,19 +40,14 @@ class CrudVideo {
         File(animationsPath).walkTopDown().forEach {
             val dir=it.isDirectory
             if (dir){
-                //Log.e("dir",it.toString())
                 var count=0
                 it.walkTopDown().forEach { files->
                     val file=files.isFile
                     when{file->{
-                        //Log.e("count",count.toString())
                         count++
-
-                        //if (count==0)it.delete()
                     }}
                 }
                 if (count==0)it.delete()
-                //Log.e("countfinal",count.toString())
             }
             when {dir->{
                 noProyect++

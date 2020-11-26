@@ -30,7 +30,7 @@ class AnimateView {
         anim.duration = 250
         v.startAnimation(anim)
     }
-    fun disableView( view:View, isDisabled:Boolean){
+    private fun disableView(view:View, isDisabled:Boolean){
 
         if(isDisabled){
             view.alpha=0.5f

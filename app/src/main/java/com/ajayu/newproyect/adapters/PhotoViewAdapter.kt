@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 
-class PhotoViewAdapter(val context: Context, var clickListener: OnPhotoClickListener, val photoList: List<PhotoModel>)
+class PhotoViewAdapter(val context: Context, private var clickListener: OnPhotoClickListener, private val photoList: List<PhotoModel>)
         : RecyclerView.Adapter<PhotoViewAdapter.PhotoViewHolder>() {
 
     private var positionSelected = -1
@@ -37,7 +37,7 @@ class PhotoViewAdapter(val context: Context, var clickListener: OnPhotoClickList
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val photo : PhotoModel = photoList[position]
-        holder.bind(photo,clickListener,position)
+        holder.bind(photo, this.clickListener,position)
 
         if (positionSelected == position)holder.itemView.setBackgroundColor(ContextCompat.getColor(context,R.color.colorVerdeAjayu))
         else holder.itemView.setBackgroundColor(ContextCompat.getColor(context,R.color.transparent))
@@ -48,15 +48,14 @@ class PhotoViewAdapter(val context: Context, var clickListener: OnPhotoClickList
         RecyclerView.ViewHolder(view){
         private var mtitle : TextView? = null
         private var mpath : ImageView
-        private var mLinear_item: LinearLayout
+        private var mLinearItem: LinearLayout
         private var rAjayu=0
-        private var status=true
-        val animateView = AnimateView()
+        private val animateView = AnimateView()
 
         init {
             mtitle = itemView.findViewById(R.id.list_title)
             mpath = itemView.findViewById(R.id.list_path)
-            mLinear_item = itemView.findViewById(R.id.linear_item)
+            mLinearItem = itemView.findViewById(R.id.linear_item)
             rAjayu = ContextCompat.getColor(context,
                 R.color.colorRojoAjayu
             )
@@ -67,8 +66,7 @@ class PhotoViewAdapter(val context: Context, var clickListener: OnPhotoClickList
             mtitle?.text =(position+1).toString()
             mtitle?.setBackgroundColor(0)
 
-            var estado = photo.status
-            when(estado){
+            when(photo.status){
                 true->{
                     action.onPhotoClick(photo,adapterPosition)
                     mtitle?.setBackgroundColor(rAjayu)
@@ -85,8 +83,7 @@ class PhotoViewAdapter(val context: Context, var clickListener: OnPhotoClickList
 
                 if(position != 0){
                     action.onPhotoClick(photo,adapterPosition)
-                    var estado = photo.status
-                    when(estado){
+                    when(photo.status){
                         true->mtitle?.setBackgroundColor(rAjayu)
                         false->mtitle?.setBackgroundColor(0)
                     }

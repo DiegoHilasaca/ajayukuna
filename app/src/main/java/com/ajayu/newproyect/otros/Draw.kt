@@ -6,12 +6,12 @@ import android.view.MotionEvent
 import android.view.View
 
 
-class DrawLineCanvas : View {
+class DrawLineCanvas(context: Context?) : View(context) {
     private var c: Canvas=Canvas()
     private var pLine: Paint = Paint()
     private var touchPath: Path
 
-    constructor(context: Context?) : super(context) {
+    init {
         pLine.color = Color.RED
         pLine.isAntiAlias = true
         pLine.style = Paint.Style.STROKE

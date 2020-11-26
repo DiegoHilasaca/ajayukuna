@@ -16,14 +16,14 @@ import com.ajayu.newproyect.model.AnimationModel
 
 class AnimationsViewAdapter(
     val context: Context,
-    var clickListener: OnProyectClickListener, val animationsList: List<AnimationModel>):
+    private var clickListener: OnProyectClickListener, private val animationsList: List<AnimationModel>):
         RecyclerView.Adapter<AnimationsViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.proyect_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.proyect_item,parent,false)
 
         return ViewHolder(view)
     }
@@ -38,8 +38,8 @@ class AnimationsViewAdapter(
     }
 
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        var title :TextView = itemView.findViewById(R.id.text_view1)
-        var img :ImageView = itemView.findViewById(R.id.image_view1)
+        private var title :TextView = itemView.findViewById(R.id.text_view1)
+        private var img :ImageView = itemView.findViewById(R.id.image_view1)
 
 
 
@@ -50,7 +50,7 @@ class AnimationsViewAdapter(
                 .load(animations.imagePath)
                 .into(img)
 
-            itemView.setOnClickListener() {
+            itemView.setOnClickListener {
                 action.onItemClick(animations, adapterPosition,itemView)
 
             }
